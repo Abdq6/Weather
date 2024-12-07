@@ -39,9 +39,9 @@ def forecast(lat=defaultLatitude,long=defaultLongitude):
     final_data = {
                 i:{
                     "Date": dates[i],
-                    "Max temperature": max_temperatures[i],
-                    "Min temperature": min_temperatures[i],
-                    "Projected power generation": round(generated_power[i], 3),
+                    "Max temperature [C]": max_temperatures[i],
+                    "Min temperature [C]": min_temperatures[i],
+                    "Projected power generation [kWh]": round(generated_power[i], 3),
                     "Weather code": weather_codes[i],
                     "Weather icon": icons[i],
                     "Weather description": descriptions[i]
@@ -64,7 +64,8 @@ def week_summary(lat=defaultLatitude,long=defaultLongitude):
     min_temp = np.min(data['daily']['temperature_2m_min'])
     weather_codes = data['daily']['weather_code']
     dates = [datetime.strptime(date, "%Y-%m-%d").strftime("%d/%m/%Y") for date in data['daily']['time']]
-    avg_sun_exposure = round(np.mean(data['daily']['daylight_duration'])/3600, 3)
+    daylight = data['daily']['daylight_duration']
+    avg_sun_exposure = f'{round(np.mean(daylight)) // 3600}:{(daylight % 3600) // 60}'
 
     #asigning codes to 'rainy' or 'sunny' weather values
     keywords = ['rain', 'drizzle', 'freezing rain', 'thunderstorm']
@@ -81,10 +82,10 @@ def week_summary(lat=defaultLatitude,long=defaultLongitude):
     final_data = {
                     0:{
                         "Date": dates[0] + " to " + dates[-1], 
-                        "Max weekly temperature": max_temp, 
-                        "Min weekly temperature": min_temp, 
-                        "Average weekly sunlight exposure": avg_sun_exposure, 
-                        "Average weekly pressure": avg_pressure, 
+                        "Max weekly temperature [C]": max_temp, 
+                        "Min weekly temperature [C]": min_temp, 
+                        "Average weekly sunlight exposure [h]": avg_sun_exposure, 
+                        "Average weekly pressure [hPa]": avg_pressure, 
                         "Sunny/rainy days during the week": f'{sunny_days}/{rainy_days}'
                         }
                 }
