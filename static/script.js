@@ -34,26 +34,33 @@ function handleGeolocationError(error) {
     console.error("Geolocation error:", error);
 }
 
-function getForecast(latitude, longitude) {
+export function getForecast(latitude, longitude) {
     fetch(`/forecast?lat=${latitude}&long=${longitude}`)
         .then(response => response.text())
         .then(data => {
                 //table extraction
                 const parser = new DOMParser();
-                const tables = parser.parseFromString(data, "text/html");
-                const iconTable = tables.querySelector("table:nth-of-type(1)");
-                const forecastTable = tables.querySelector("table:nth-of-type(2)");
+                const doc = parser.parseFromString(data, "text/html");
+                //const iconTable = tables.querySelector("table:nth-of-type(1)");
+                const forecastTable = doc.querySelector("table");
 
-                iconTable.classList.add("border-collapse", "w-full", "divi", "border-gray-300", "text-center", "mt-4");
-                forecastTable.classList.add("border-collapse", "w-full", "divide-x", "border-gray-300", "text-center", "mt-4");
+                //iconTable.classList.add("border-collapse", "w-full", "divi", "border-gray-300", "text-center", "mt-4");
+                forecastTable.classList.add("border-collapese", "w-full", "text-center", "mt-4");
+            
+                const rows = forecastTable.querySelectorAll("tr");
+                rows.forEach(row => {
+                    row.classList.add("divide-x-2", "divide-gray-900", "border");
+                });
                 
                 document.getElementById('forecast-container').innerHTML = `
-                        ${iconTable.outerHTML}
+                        
                         ${forecastTable.outerHTML}
                     `;
-                document.getElementById(`status-${clickedButton}`).innerText = "";
-                clickedButton = "";
-                console.log(`forecast for ${latitude} and long:${longitude}`)
+                if (clickedButton){
+                    document.getElementById(`status-${clickedButton}`).innerText = "";
+                    clickedButton = "";
+                    //console.log(`forecast for ${latitude} and long:${longitude}`)
+                }
         })
         .catch(error => {
             document.getElementById('status-forecast').innerText = "Error fetching forecast!";
@@ -61,20 +68,25 @@ function getForecast(latitude, longitude) {
         });
 }
 
-function getSummary(latitude, longitude) {
+export function getSummary(latitude, longitude) {
     fetch(`/summary?lat=${latitude}&long=${longitude}`)
         .then(response => response.text())
         .then(data => {
-            console.log("Received response:", data);
             const parser = new DOMParser();
             const doc = parser.parseFromString(data, "text/html");
             const summaryTable = doc.querySelector("table");
-
-            summaryTable.classList.add("border-collapse", "w-full", "border", "border-gray-300", "text-center", "mt-4");
+            summaryTable.classList.add("border-collapse", "w-[90%]", "text-center", "mt-4", "mx-auto");
+            
+            const rows = summaryTable.querySelectorAll("tr");
+            rows.forEach(row => {
+                row.classList.add("divide-x-2", "divide-gray-900", "border");
+            });
             
             document.getElementById('summary-container').innerHTML = summaryTable.outerHTML;
-            document.getElementById(`status-${clickedButton}`).innerText = "";
-            clickedButton = "";
+            if (clickedButton) {
+                document.getElementById(`status-${clickedButton}`).innerText = "";
+                clickedButton = "";
+            }
         })
         .catch(error => {
             document.getElementById('status-summary').innerText = "Error fetching forecast!";

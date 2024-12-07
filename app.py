@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 
-from endpoints import week_summary, forecast, gen_table, get_weather_icons
+from endpoints import week_summary, forecast
+from auxilary_functions import gen_table, get_weather_icons
 
 app = Flask(__name__)
 
@@ -13,9 +14,9 @@ def get_forecast():
     latitude = float(request.args.get('lat'))
     longitude = float(request.args.get('long'))
     result = forecast(latitude,longitude)
-    icon_table = get_weather_icons(result)
+    #icon_table = get_weather_icons(result) see auxilary_functions.py
     tabular_data = gen_table(result)
-    return icon_table + tabular_data
+    return tabular_data
 
 @app.route('/summary', methods=['GET'])
 def get_week_summary():

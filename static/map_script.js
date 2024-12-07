@@ -1,4 +1,4 @@
-import { getUserLocation } from '/static/script.js';
+import { getUserLocation, getForecast, getSummary } from '/static/script.js';
 import { modifyUserLatitude, modifyUserLongitude } from '/static/global_variables.js';
 import { userLatitude, userLongitude, defaultLatitude, defaultLongitude } from '/static/global_variables.js';
 
@@ -7,6 +7,8 @@ let currentPosition = null;
 getUserLocation()
     .then(() => {
         initializeMap(userLatitude, userLongitude);
+        getForecast(userLatitude, userLongitude);
+        getSummary(userLatitude, userLongitude);
     })
     .catch((error) => {
         console.error("Couldn't retrieve initial location:", error);
