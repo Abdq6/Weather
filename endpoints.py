@@ -65,7 +65,7 @@ def week_summary(lat=defaultLatitude,long=defaultLongitude):
     weather_codes = data['daily']['weather_code']
     dates = [datetime.strptime(date, "%Y-%m-%d").strftime("%d/%m/%Y") for date in data['daily']['time']]
     daylight = data['daily']['daylight_duration']
-    avg_sun_exposure = f'{round(np.mean(daylight)) // 3600}:{(daylight % 3600) // 60}'
+    avg_sun_exposure = f'{round(np.mean(daylight)) // 3600}:{(round(np.mean((daylight))) % 3600) // 60}'
 
     #asigning codes to 'rainy' or 'sunny' weather values
     keywords = ['rain', 'drizzle', 'freezing rain', 'thunderstorm']
@@ -84,8 +84,8 @@ def week_summary(lat=defaultLatitude,long=defaultLongitude):
                         "Date": dates[0] + " to " + dates[-1], 
                         "Max weekly temperature [C]": max_temp, 
                         "Min weekly temperature [C]": min_temp, 
-                        "Average weekly sunlight exposure [h]": avg_sun_exposure, 
-                        "Average weekly pressure [hPa]": avg_pressure, 
+                        "Average sunlight exposure [h:min]": avg_sun_exposure, 
+                        "Average pressure [hPa]": avg_pressure, 
                         "Sunny/rainy days during the week": f'{sunny_days}/{rainy_days}'
                         }
                 }
