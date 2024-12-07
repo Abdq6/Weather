@@ -8,13 +8,16 @@ from datetime import datetime
 from weather_codes import weather_conditions
 from auxilary_functions import get_icons
 
+defaultLatitude = 21
+defaultLongitude = 37
+
 def validate_input_coordinates(lat: float, long: float):
     if not (-90 <= lat <= 90):
         raise ValueError("Invalid latitude. Must be between -90 and 90.")
     if not (-180 <= long <= 180):
         raise ValueError("Invalid longitude. Must be between -180 and 180.")
 
-def forecast(lat=21.37,long=69.):
+def forecast(lat=defaultLatitude,long=defaultLongitude):
     #input validation and data sourcing
     validate_input_coordinates(lat,long)
     endpoint_1 = "https://api.open-meteo.com/v1/forecast?latitude={}&longitude={}&daily=temperature_2m_max,temperature_2m_min,daylight_duration,weather_code&timezone=Europe/Warsaw"
@@ -48,7 +51,7 @@ def forecast(lat=21.37,long=69.):
     final_data = json.dumps(final_data, indent=4)
     return final_data
 
-def week_summary(lat=21.37,long=69.):
+def week_summary(lat=defaultLatitude,long=defaultLongitude):
     #input validation and data sourcing
     validate_input_coordinates(lat,long)
     endpoint_2 = "https://api.open-meteo.com/v1/forecast?latitude={}&longitude={}&daily=temperature_2m_max,temperature_2m_min,daylight_duration,weather_code&hourly=surface_pressure&timezone=Europe/Warsaw"
