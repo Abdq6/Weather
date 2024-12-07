@@ -42,11 +42,11 @@ export function getForecast(latitude, longitude) {
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(data, "text/html");
                 const forecastTable = doc.querySelector("table");
-                forecastTable.classList.add("border-collapese", "w-[90%]", "mx-auto", "text-center", "mt-4", "max-w-[500px]");
+                forecastTable.classList.add("border-collapese", "w-[90%]", "mx-auto", "text-center", "mt-4");
             
                 const cells = forecastTable.querySelectorAll("td");
                 cells.forEach(cell => {
-                    cell.classList.add("divide-x-2", "divide-gray-900", "break-words", "px-6", "py-2");
+                    cell.classList.add("border-b","break-words", "px-6", "py-4");
                 });
                 
                 document.getElementById('forecast-container').innerHTML = `
