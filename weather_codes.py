@@ -1,0 +1,32 @@
+weather_conditions = {
+    '0': ['clear sky', '<i class="fa-solid fa-sun"></i>'],
+    '1': ['mainly clear', '<i class="fa-solid fa-cloud-sun"></i>'],
+    '2': ['martly cloudy', '<i class="fa-solid fa-cloud-sun"></i>'],
+    '3': ['overcast', '<i class="fa-solid fa-cloud"></i>'],
+    '45': ['fog', '<i class="fa-solid fa-water"></i>'],
+    '48': ['depositing rime fog', '<i class="fa-solid fa-water"></i>'],
+    '51': ['drizzle: light intensity', '<i class="fa-solid fa-cloud-sun-rain"></i>'],
+    '53': ['drizzle: moderate intensity', '<i class="fa-solid fa-cloud-sun-rain"></i>'],
+    '55': ['drizzle: dense intensity', '<i class="fa-solid fa-cloud-sun-rain"></i>'],
+    '56': ['freezing drizzle: light intensity', '<i class="fa-solid fa-cloud-showers-water"></i>'],
+    '57': ['freezing drizzle: dense intensity', '<i class="fa-solid fa-cloud-showers-water"></i>'],
+    '61': ['rain: slight intensity', '<i class="fa-solid fa-cloud-rain"></i>'],
+    '63': ['rain: moderate intensity', '<i class="fa-solid fa-cloud-rain"></i>'],
+    '65': ['rain: heavy intensity', '<i class="fa-solid fa-cloud-rain"></i>'],
+    '66': ['freezing rain: light intensity', '<i class="fa-solid fa-cloud-showers-water"></i>'],
+    '67': ['freezing rain: heavy intensity', '<i class="fa-solid fa-cloud-showers-water"></i>'],
+    '71': ['snow fall: slight intensity', '<i class="fa-solid fa-snowflake"></i>'],
+    '73': ['snow fall: moderate intensity', '<i class="fa-solid fa-snowflake"></i>'],
+    '75': ['snow fall: heavy intensity', '<i class="fa-solid fa-snowflake"></i>'],
+    '77': ['snow grains', '<i class="fa-solid fa-snowflake"></i>'],
+    '80': ['rain showers: slight intensity', '<i class="fa-solid fa-cloud-showers-heavy"></i>'],
+    '81': ['rain showers: moderate intensity', '<i class="fa-solid fa-cloud-showers-heavy"></i>'],
+    '82': ['rain showers: violent intensity', '<i class="fa-solid fa-cloud-showers-heavy"></i>'],
+    '85': ['snow showers: slight intensity', '<i class="fa-solid fa-cloud-meatball"></i>'],
+    '86': ['snow showers: heavy intensity', '<i class="fa-solid fa-cloud-meatball"></i>'],
+    '95': ['thunderstorm: slight or moderate', '<i class="fa-solid fa-cloud-bolt"></i>'],
+    '96': ['thunderstorm with slight hail', '<i class="fa-solid fa-cloud-bolt"></i>'],
+    '99': ['thunderstorm with heavy hail', '<i class="fa-solid fa-cloud-bolt"></i>']
+}
+
+
