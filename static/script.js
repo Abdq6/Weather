@@ -35,7 +35,7 @@ function handleGeolocationError(error) {
 }
 
 function getForecast(latitude, longitude) {
-    fetch(`http://127.0.0.1:5000/forecast?lat=${latitude}&long=${longitude}`)
+    fetch(`/forecast?lat=${latitude}&long=${longitude}`)
         .then(response => response.text())
         .then(data => {
                 //table extraction
@@ -62,7 +62,7 @@ function getForecast(latitude, longitude) {
 }
 
 function getSummary(latitude, longitude) {
-    fetch(`http://127.0.0.1:5000/summary?lat=${latitude}&long=${longitude}`)
+    fetch(`/summary?lat=${latitude}&long=${longitude}`)
         .then(response => response.text())
         .then(data => {
             console.log("Received response:", data);
