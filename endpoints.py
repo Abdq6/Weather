@@ -6,7 +6,7 @@ from io import StringIO
 from datetime import datetime
 
 from weather_codes import weather_conditions
-from auxilary_functions import gen_table, get_icons
+from auxilary_functions import get_icons
 
 def validate_input_coordinates(lat: float, long: float):
     if not (-90 <= lat <= 90):
@@ -77,7 +77,7 @@ def week_summary(lat=21.37,long=69.):
     #final data assembly
     final_data = {
                     0:{
-                        "Date": "from " + dates[0] + " to " + dates[-1], 
+                        "Date": dates[0] + " to " + dates[-1], 
                         "Max weekly temperature": max_temp, 
                         "Min weekly temperature": min_temp, 
                         "Average weekly sunlight exposure": avg_sun_exposure, 

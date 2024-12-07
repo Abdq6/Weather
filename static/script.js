@@ -41,15 +41,12 @@ export function getForecast(latitude, longitude) {
                 //table extraction
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(data, "text/html");
-                //const iconTable = tables.querySelector("table:nth-of-type(1)");
                 const forecastTable = doc.querySelector("table");
-
-                //iconTable.classList.add("border-collapse", "w-full", "divi", "border-gray-300", "text-center", "mt-4");
-                forecastTable.classList.add("border-collapese", "w-full", "text-center", "mt-4");
+                forecastTable.classList.add("border-collapese", "w-[90%]", "mx-auto", "text-center", "mt-4", "max-w-[500px]");
             
-                const rows = forecastTable.querySelectorAll("tr");
-                rows.forEach(row => {
-                    row.classList.add("divide-x-2", "divide-gray-900", "border");
+                const cells = forecastTable.querySelectorAll("td");
+                cells.forEach(cell => {
+                    cell.classList.add("divide-x-2", "divide-gray-900", "break-words", "px-6", "py-2");
                 });
                 
                 document.getElementById('forecast-container').innerHTML = `
@@ -59,7 +56,6 @@ export function getForecast(latitude, longitude) {
                 if (clickedButton){
                     document.getElementById(`status-${clickedButton}`).innerText = "";
                     clickedButton = "";
-                    //console.log(`forecast for ${latitude} and long:${longitude}`)
                 }
         })
         .catch(error => {
@@ -76,11 +72,6 @@ export function getSummary(latitude, longitude) {
             const doc = parser.parseFromString(data, "text/html");
             const summaryTable = doc.querySelector("table");
             summaryTable.classList.add("border-collapse", "w-[90%]", "text-center", "mt-4", "mx-auto");
-            
-            const rows = summaryTable.querySelectorAll("tr");
-            rows.forEach(row => {
-                row.classList.add("divide-x-2", "divide-gray-900", "border");
-            });
             
             document.getElementById('summary-container').innerHTML = summaryTable.outerHTML;
             if (clickedButton) {
