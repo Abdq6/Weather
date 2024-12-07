@@ -9,7 +9,6 @@ document.getElementById('get-summary-location').addEventListener('click', onSumm
 function handleGeolocationSuccess(position) {
     console.log("Location -> success:", position);
     const { latitude, longitude } = position.coords;
-    console.log(`${latitude}, ${longitude}`)
     modifyUserLatitude(latitude);
     modifyUserLongitude(longitude);
 }
@@ -42,7 +41,7 @@ export function getForecast(latitude, longitude) {
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(data, "text/html");
                 const forecastTable = doc.querySelector("table");
-                forecastTable.classList.add("border-collapese", "w-[90%]", "mx-auto", "text-center", "mt-4");
+                forecastTable.classList.add("border-collapese", "w-[90%]", "mx-auto", "text-center", "mt-4", "max-w-[500px]");
             
                 const cells = forecastTable.querySelectorAll("td");
                 cells.forEach(cell => {
@@ -145,7 +144,6 @@ if (prefersDarkScheme && !localStorage.getItem('theme')) {
 
 // dark mode button
 toggleButton.addEventListener('click', () => {
-    console.log("Switching to dark mode")
     document.body.classList.toggle('dark');
 
     if (document.body.classList.contains('dark')) {
